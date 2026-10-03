@@ -831,3 +831,145 @@ if ("serviceWorker" in navigator) {
     });
 
 }
+// ====================
+// バックアップ機能
+// ====================
+
+// バックアップボタンを取得
+const backupButton = document.getElementById("backupButton");
+
+// 復元ボタンを取得
+const restoreButton = document.getElementById("restoreButton");
+
+// ファイル選択欄を取得
+const restoreFile = document.getElementById("restoreFile");
+
+
+// ====================
+// バックアップ
+// ====================
+
+backupButton.addEventListener("click", function () {
+
+    // 現在の単語データをJSON形式に変換する
+    const backupData = JSON.stringify(words, null, 2);
+
+    // ダウンロードするファイルを作る
+    const blob = new Blob(
+        [backupData],
+        { type: "application/json" }
+    );
+
+    // ファイルをダウンロードするためのURLを作る
+    const url = URL.createObjectURL(blob);
+
+    // ダウンロード用のリンクを作る
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    // 今日の日付を取得
+const now = new Date();
+
+// 年・月・日を取得
+const year = now.getFullYear();
+const month = String(now.getMonth() + 1).padStart(2, "0");
+const day = String(now.getDate()).padStart(2, "0");
+
+// ファイル名を作る
+link.download = `EITAN-GO-backup-${year}-${month}-${day}.json`;
+
+    // ダウンロードを実行
+    link.click();
+
+    // 作ったURLを削除
+    URL.revokeObjectURL(url);
+
+    alert("単語帳をバックアップしたズモ！");
+});
+
+
+// ====================
+// 復元ボタン
+// ====================
+
+restoreButton.addEventListener("click", function () {
+
+    // ファイル選択画面を開く
+    restoreFile.click();
+
+});
+
+
+// ====================
+// ファイルが選ばれたとき
+// ====================
+
+restoreFile.addEventListener("change", function () {
+
+    // 選択されたファイルを取得
+    const file = restoreFile.files[0];
+
+    // ファイルが選ばれていなければ終了
+    if (!file) {
+        return;
+    }
+
+    // ファイルを読み込むためのもの
+    const reader = new FileReader();
+
+
+    reader.onload = function () {
+
+        try {
+
+            // JSONをJavaScriptの配列に戻す
+            const restoredWords = JSON.parse(reader.result);
+
+            // 配列になっているか確認
+            if (!Array.isArray(restoredWords)) {
+                throw new Error("データの形式が違いますw");
+            }
+
+
+            // 本当に復元するか確認
+            const result = confirm(
+                "現在の単語帳をバックアップデータで置き換えます。\n\n本当に復元しますか？"
+            );
+
+            if (!result) {
+                return;
+            }
+
+
+            // 単語データを復元
+            words = restoredWords;
+
+            // localStorageにも保存
+            saveWords();
+
+            // 画面の単語一覧を更新
+            renderWords();
+
+            alert("単語帳を復元したズモ！");
+
+        } catch (error) {
+
+            // 正しいバックアップファイルではない場合
+            alert(
+                "このファイルはEITAN GOのバックアップではない可能性が高井さんズモ"
+            );
+
+        }
+
+    };
+
+
+    // ファイルを読み込む
+    reader.readAsText(file);
+
+
+    // 同じファイルをもう一度選べるようにする
+    restoreFile.value = "";
+
+});
