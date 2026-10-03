@@ -1,0 +1,682 @@
+/* ==================== */
+/* ページ全体 */
+/* ==================== */
+
+body {
+    /* 文字の種類 */
+    font-family: sans-serif;
+
+    /* 背景色 */
+    background-color: #dddddd;
+
+    /* 文字の色 */
+    color: #333;
+
+    /* 画面の中央に文字を配置 */
+    text-align: center;
+
+    /* 画面の端にくっつかないようにする */
+    margin: 0;
+
+    /* 上下左右に余白 */
+    padding: 40px 20px;
+}
+
+
+/* ==================== */
+/* ホーム画面 */
+/* ==================== */
+
+#homePage {
+    /* ホーム画面を中央に配置 */
+    max-width: 600px;
+
+    /* 左右の余白を自動にする */
+    margin: 0 auto;
+}
+
+
+/* 「よぉこそ！」 */
+
+#homePage h1 {
+    /* 文字を大きくする */
+    font-size: 42px;
+
+    /* 下の余白 */
+    margin-bottom: 10px;
+}
+
+
+/* EITAN GO */
+
+#homePage h2 {
+    /* 文字を大きくする */
+    font-size: 32px;
+
+    /* 上の余白 */
+    margin-top: 10px;
+}
+
+
+/* MY英単語帳 */
+
+#homePage p {
+    /* 文字を少し大きくする */
+    font-size: 18px;
+
+    /* 文字を薄くする */
+    color: #666;
+
+    /* 下に余白 */
+    margin-bottom: 40px;
+}
+
+
+/* ==================== */
+/* ボタン */
+/* ==================== */
+
+button {
+    /* ボタンの文字サイズ */
+    font-size: 18px;
+
+    /* ボタンの内側の余白 */
+    padding: 12px 24px;
+
+    /* ボタン同士の間隔 */
+    margin: 8px;
+
+    /* 枠線を消す */
+    border: none;
+
+    /* 角を丸くする */
+    border-radius: 10px;
+
+    /* マウスカーソルを指にする */
+    cursor: pointer;
+}
+
+
+/* ホーム画面のボタン */
+
+#wordPageButton,
+#quizPageButton {
+    /* 横幅 */
+    width: 220px;
+
+    /* 縦幅 */
+    padding: 18px;
+
+    /* 文字を大きくする */
+    font-size: 20px;
+}
+
+
+/* ==================== */
+/* 各ページ */
+/* ==================== */
+
+#wordPage,
+#quizPage {
+    /* 最大横幅 */
+    max-width: 700px;
+
+    /* 中央に配置 */
+    margin: 0 auto;
+}
+
+
+/* ページタイトル */
+
+#wordPage h1,
+#quizPage h1 {
+    /* 文字サイズ */
+    font-size: 32px;
+
+    /* 下の余白 */
+    margin-bottom: 30px;
+}
+
+
+/* ==================== */
+/* 戻るボタン */
+/* ==================== */
+
+#wordBackButton,
+#quizBackButton {
+    /* 左側に寄せる */
+    display: block;
+
+    /* 上下の余白 */
+    margin: 0 0 20px 0;
+
+    /* 文字を少し小さくする */
+    font-size: 16px;
+}
+
+
+/* ==================== */
+/* 単語登録フォーム */
+/* ==================== */
+
+.word-form {
+    /* 背景を白にする */
+    background-color: white;
+
+    /* 内側に余白 */
+    padding: 25px;
+
+    /* 角を丸くする */
+    border-radius: 15px;
+
+    /* 下に余白 */
+    margin-bottom: 30px;
+}
+
+
+/* 入力欄の説明 */
+
+.word-form label {
+    /* 1行ずつ表示する */
+    display: block;
+
+    /* 左揃え */
+    text-align: left;
+
+    /* 上に余白 */
+    margin-top: 15px;
+
+    /* 文字を太くする */
+    font-weight: bold;
+}
+
+
+/* 入力欄 */
+
+.word-form input {
+    /* 横幅 */
+    width: 100%;
+
+    /* box-sizingを使うことで
+       paddingを含めて横幅100%になる */
+    box-sizing: border-box;
+
+    /* 内側の余白 */
+    padding: 12px;
+
+    /* 上に少し余白 */
+    margin-top: 5px;
+
+    /* 文字サイズ */
+    font-size: 16px;
+
+    /* 枠線 */
+    border: 1px solid #dddddd;
+
+    /* 角を丸くする */
+    border-radius: 8px;
+}
+
+
+/* ==================== */
+/* 登録済み単語一覧 */
+/* ==================== */
+
+#wordList {
+    /* 単語カードを並べる */
+    display: flex;
+
+    /* 縦方向に並べる */
+    flex-direction: column;
+
+    /* カード同士の間隔 */
+    gap: 15px;
+}
+
+
+/* ==================== */
+/* クイズ設定 */
+/* ==================== */
+
+#quizSettings {
+    /* 白いカードにする */
+    background-color: white;
+
+    /* 内側の余白 */
+    padding: 25px;
+
+    /* 角を丸くする */
+    border-radius: 15px;
+}
+
+
+/* 問題数選択 */
+
+#quizCount {
+    /* 文字サイズ */
+    font-size: 18px;
+
+    /* 内側の余白 */
+    padding: 10px;
+
+    /* 角を丸くする */
+    border-radius: 8px;
+}
+
+
+/* ==================== */
+/* クイズ本体 */
+/* ==================== */
+
+#quizGame {
+    /* 白いカードにする */
+    background-color: white;
+
+    /* 内側の余白 */
+    padding: 25px;
+
+    /* 角を丸くする */
+    border-radius: 15px;
+}
+
+
+/* クイズの問題文 */
+
+#quizQuestion {
+    /* 文字を大きくする */
+    font-size: 28px;
+
+    /* 上下の余白 */
+    margin: 30px 0;
+}
+
+
+/* クイズの選択肢 */
+
+#quizOptions {
+    /* 選択肢を縦に並べる */
+    display: flex;
+
+    /* 縦方向 */
+    flex-direction: column;
+
+    /* 選択肢同士の間隔 */
+    gap: 10px;
+}
+
+
+/* 選択肢のボタン */
+
+#quizOptions button {
+    /* 横幅いっぱい */
+    width: 100%;
+
+    /* 背景色 */
+    background-color: #dddddd;
+}
+
+
+/* ==================== */
+/* スマホ向け設定 */
+/* ==================== */
+
+@media (max-width: 600px) {
+
+    /* スマホでは画面端の余白を少し小さくする */
+    body {
+        padding: 25px 15px;
+    }
+
+
+    /* ホームのタイトルを少し小さくする */
+    #homePage h1 {
+        font-size: 36px;
+    }
+
+
+    /* EITAN GOも少し小さくする */
+    #homePage h2 {
+        font-size: 28px;
+    }
+
+
+    /* ホームボタンを画面に合わせる */
+    #wordPageButton,
+    #quizPageButton {
+        width: 100%;
+    }
+}
+/* ==================== */
+/* テーマ設定 */
+/* ==================== */
+
+#themeSettings {
+    /* 上に少し余白を作る */
+    margin-top: 40px;
+
+    /* 内側に少し余白を作る */
+    padding: 15px;
+}
+
+
+/* 「画面の明るさ」の文字 */
+
+#themeSettings h3 {
+    /* 文字を少し小さくする */
+    font-size: 16px;
+
+    /* 文字を薄くする */
+    color: #666;
+}
+
+
+/* ==================== */
+/* ダークモード */
+/* ==================== */
+
+/* bodyにdarkModeというクラスが付いたとき */
+
+body.darkMode {
+    /* 背景を暗くする */
+    background-color: #181818;
+
+    /* 文字を明るくする */
+    color: #dddddd;
+}
+
+
+/* ダークモードのカード */
+
+body.darkMode .word-form,
+body.darkMode #quizSettings,
+body.darkMode #quizGame {
+    /* カードの背景を暗くする */
+    background-color: #252525;
+}
+
+
+/* ダークモードの入力欄 */
+
+body.darkMode .word-form input {
+    /* 入力欄の背景 */
+    background-color: #333;
+
+    /* 入力文字 */
+    color: white;
+
+    /* 枠線 */
+    border-color: #555;
+}
+
+
+/* ダークモードの入力欄に表示される例 */
+
+body.darkMode .word-form input::placeholder {
+    /* プレースホルダーを少し暗めの白にする */
+    color: #aaa;
+}
+
+
+/* ダークモードのクイズ選択肢 */
+
+body.darkMode #quizOptions button {
+    /* 選択肢の背景 */
+    background-color: #333;
+
+    /* 文字 */
+    color: white;
+}
+
+
+/* ダークモードの「MY英単語帳」など */
+
+body.darkMode #homePage p {
+    /* 文字色 */
+    color: #aaa;
+}
+
+
+/* ダークモードのテーマ説明 */
+
+body.darkMode #themeSettings h3 {
+    /* 文字色 */
+    color: #aaa;
+}
+
+/* ==================== */
+/* 単語カード */
+/* ==================== */
+
+.word-card {
+    /* カードの背景 */
+    background-color: white;
+
+    /* カードの内側の余白 */
+    padding: 20px;
+
+    /* カードの角を丸くする */
+    border-radius: 15px;
+
+    /* 文字を左揃え */
+    text-align: left;
+}
+
+
+/* 単語カードの英単語 */
+
+.word-card h3 {
+    /* 上の余白をなくす */
+    margin-top: 0;
+
+    /* 英単語を大きくする */
+    font-size: 24px;
+}
+
+
+/* 単語カードの説明 */
+
+.word-card p {
+    /* 文字色 */
+    color: #666;
+}
+
+
+/* ダークモードの単語カード */
+
+body.darkMode .word-card {
+    /* 背景を暗くする */
+    background-color: #252525;
+}
+
+
+/* ダークモードの単語カードの説明 */
+
+body.darkMode .word-card p {
+    /* 文字を明るくする */
+    color: #aaa;
+}
+
+/* ==================== */
+/* スマホ向け設定 */
+/* ==================== */
+
+@media (max-width: 600px) {
+
+    /* ページ全体 */
+    body {
+        /* スマホでは余白を少し小さくする */
+        padding: 20px 12px;
+
+        /* 横スクロールを防ぐ */
+        overflow-x: hidden;
+    }
+
+
+    /* ホーム画面の「よぉこそ！」 */
+    #homePage h1 {
+        /* スマホでも見やすい大きさ */
+        font-size: 36px;
+    }
+
+
+    /* EITAN GO */
+    #homePage h2 {
+        font-size: 28px;
+    }
+
+
+    /* ホーム画面の説明 */
+    #homePage p {
+        font-size: 16px;
+
+        /* 下の余白 */
+        margin-bottom: 30px;
+    }
+
+
+    /* ホーム画面のボタン */
+    #wordPageButton,
+    #quizPageButton {
+        /* 横幅を画面いっぱいにする */
+        width: 100%;
+
+        /* タップしやすくする */
+        padding: 16px;
+
+        /* 文字を大きくする */
+        font-size: 19px;
+
+        /* 左右の余白をなくす */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    /* 単語帳・クイズのタイトル */
+    #wordPage h1,
+    #quizPage h1 {
+        font-size: 28px;
+    }
+
+
+    /* 単語登録フォーム */
+    .word-form {
+        /* スマホでは少し余白を小さくする */
+        padding: 18px;
+    }
+
+
+    /* 入力欄 */
+    .word-form input {
+        /* タップしやすい高さにする */
+        padding: 14px;
+
+        /* 文字を少し大きくする */
+        font-size: 17px;
+    }
+
+
+    /* 登録ボタン */
+    #addWordButton {
+        /* 横幅いっぱい */
+        width: 100%;
+
+        /* タップしやすくする */
+        padding: 15px;
+
+        /* 左右の余白 */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    /* 単語カード */
+    .word-card {
+        /* カードの余白 */
+        padding: 18px;
+    }
+
+
+    /* 単語カードの英単語 */
+    .word-card h3 {
+        font-size: 22px;
+    }
+
+
+    /* クイズ設定 */
+    #quizSettings {
+        padding: 18px;
+    }
+
+
+    /* 問題数選択 */
+    #quizCount {
+        /* タップしやすくする */
+        padding: 12px;
+
+        /* 文字を大きくする */
+        font-size: 17px;
+    }
+
+
+    /* クイズ開始ボタン */
+    #startQuizButton {
+        /* 横幅いっぱい */
+        width: 100%;
+
+        /* タップしやすくする */
+        padding: 15px;
+
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    /* クイズ本体 */
+    #quizGame {
+        padding: 18px;
+    }
+
+
+    /* クイズ問題 */
+    #quizQuestion {
+        /* スマホで大きすぎないようにする */
+        font-size: 23px;
+
+        /* 上下の余白 */
+        margin: 25px 0;
+    }
+
+
+    /* クイズの選択肢 */
+    #quizOptions button {
+        /* タップしやすい高さ */
+        padding: 15px;
+
+        /* 文字を大きくする */
+        font-size: 17px;
+
+        /* 横幅いっぱい */
+        width: 100%;
+
+        /* 左右の余白 */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    /* テーマ設定 */
+    #themeSettings {
+        /* スマホでは少し余白を小さくする */
+        margin-top: 30px;
+    }
+
+
+    /* テーマボタン */
+    #lightModeButton,
+    #darkModeButton {
+        /* タップしやすくする */
+        padding: 13px;
+    }
+
+}

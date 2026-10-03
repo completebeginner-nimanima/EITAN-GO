@@ -1,0 +1,14 @@
+{
+    "name": "EITAN GO",
+    "short_name": "EITAN GO",
+
+    "start_url": "./index.html",
+
+    "display": "standalone",
+
+    "background_color": "#f5f5f5",
+
+    "theme_color": "#f5f5f5",
+
+    "description": "自分だけの英単語帳アプリ"
+}
