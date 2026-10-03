@@ -395,6 +395,414 @@ addWordButton.addEventListener("click", function () {
 
 renderWords();
 
+// クイズ機能
+// ==============================
+
+
+// 問題数を選ぶ場所
+const quizCount = document.getElementById("quizCount");
+
+// クイズ開始ボタン
+const startQuizButton = document.getElementById("startQuizButton");
+
+// 問題数を選ぶ画面
+const quizSettings = document.getElementById("quizSettings");
+
+// クイズ本体
+const quizGame = document.getElementById("quizGame");
+
+// 現在何問目か
+const quizProgress = document.getElementById("quizProgress");
+
+// 正解数
+const quizScore = document.getElementById("quizScore");
+
+// 問題文
+const quizQuestion = document.getElementById("quizQuestion");
+
+// 選択肢
+const quizOptions = document.getElementById("quizOptions");
+
+// 次の問題ボタン
+const nextQuizButton = document.getElementById("nextQuizButton");
+
+// もう一度挑戦するボタン
+const retryQuizButton = document.getElementById("retryQuizButton");
+
+
+// 現在の問題の単語
+let currentQuizWord = null;
+
+// クイズの問題数
+let totalQuizCount = 10;
+
+// 現在何問目か
+let currentQuizNumber = 0;
+
+// 正解数
+let score = 0;
+
+
+// =================================
+// クイズ開始
+// =================================
+
+startQuizButton.addEventListener("click", function () {
+
+    // 選択された問題数を取得
+    totalQuizCount = Number(quizCount.value);
+
+    // 4個未満だと4択問題が作れない
+    if (words.length < 4) {
+        alert("3単語しか登録してないとかどうゆうこと？");
+        return;
+    }
+
+    // 最初の問題
+    currentQuizNumber = 1;
+
+    // 正解数を0にする
+    score = 0;
+
+    // 問題数選択画面を隠す
+    quizSettings.style.display = "none";
+
+    // クイズ画面を表示
+    quizGame.style.display = "block";
+
+    // 次の問題ボタンを表示
+    nextQuizButton.style.display = "inline-block";
+
+    // 再チャレンジボタンを隠す
+    retryQuizButton.style.display = "none";
+
+    // 1問目を作る
+    createQuiz();
+
+});
+
+
+// =================================
+// クイズを作る
+// =================================
+
+function createQuiz() {
+
+    // 前の選択肢を消す
+    quizOptions.innerHTML = "";
+
+    // 問題番号を表示
+    quizProgress.textContent =
+        `第 ${currentQuizNumber} / ${totalQuizCount} 問`;
+
+    // 正解数を表示
+    quizScore.textContent =
+        `正解数：${score}`;
+
+
+    // ---------------------------------
+    // 今回の問題の単語をランダムに選ぶ
+    // ---------------------------------
+
+    const randomIndex =
+        Math.floor(Math.random() * words.length);
+
+    currentQuizWord = words[randomIndex];
+
+
+    // ---------------------------------
+    // 問題の種類をランダムに決める
+    // ---------------------------------
+
+    const quizType =
+        Math.floor(Math.random() * 3);
+
+
+    // =================================
+    // ① 意味 → 英単語
+    // =================================
+
+    if (quizType === 0) {
+
+        quizQuestion.textContent =
+            `「${currentQuizWord.meaning}」という意味の英単語は？`;
+
+
+        // 正解を入れる
+        let choices = [currentQuizWord];
+
+
+        // 正解以外を3個追加
+        while (choices.length < 4) {
+
+            const randomWord =
+                words[Math.floor(Math.random() * words.length)];
+
+            if (!choices.includes(randomWord)) {
+                choices.push(randomWord);
+            }
+        }
+
+
+        // 選択肢の順番をランダムにする
+        choices.sort(() => Math.random() - 0.5);
+
+
+        // ボタンを作る
+        choices.forEach(function (choice) {
+
+            const button = document.createElement("button");
+
+            button.textContent = choice.word;
+
+
+            button.addEventListener("click", function () {
+
+                // 正解か確認
+                const isCorrect =
+                    choice === currentQuizWord;
+
+                finishAnswer(
+                    isCorrect,
+                    currentQuizWord.word
+                );
+
+            });
+
+
+            quizOptions.appendChild(button);
+
+        });
+
+    }
+
+
+    // =================================
+    // ② 英単語 → 意味
+    // =================================
+
+    else if (quizType === 1) {
+
+        quizQuestion.textContent =
+            `「${currentQuizWord.word}」の意味は？`;
+
+
+        // 正解を入れる
+        let choices = [currentQuizWord];
+
+
+        // 正解以外を3個追加
+        while (choices.length < 4) {
+
+            const randomWord =
+                words[Math.floor(Math.random() * words.length)];
+
+            if (!choices.includes(randomWord)) {
+                choices.push(randomWord);
+            }
+        }
+
+
+        // 順番をランダムにする
+        choices.sort(() => Math.random() - 0.5);
+
+
+        // ボタンを作る
+        choices.forEach(function (choice) {
+
+            const button = document.createElement("button");
+
+            button.textContent = choice.meaning;
+
+
+            button.addEventListener("click", function () {
+
+                const isCorrect =
+                    choice === currentQuizWord;
+
+                finishAnswer(
+                    isCorrect,
+                    currentQuizWord.meaning
+                );
+
+            });
+
+
+            quizOptions.appendChild(button);
+
+        });
+
+    }
+
+
+    // =================================
+    // ③ スペル入力
+    // =================================
+
+    else {
+
+        quizQuestion.textContent =
+            `「${currentQuizWord.meaning}」を英語で入力してね`;
+
+
+        // 入力欄
+        const input = document.createElement("input");
+
+        input.type = "text";
+
+        input.placeholder = "英単語を入力";
+
+
+        // 回答ボタン
+        const answerButton =
+            document.createElement("button");
+
+        answerButton.textContent = "回答";
+
+
+        answerButton.addEventListener("click", function () {
+
+            // 入力された答え
+            const answer =
+                input.value.trim();
+
+
+            // 大文字小文字を区別しない
+            const isCorrect =
+                answer.toLowerCase() ===
+                currentQuizWord.spelling.toLowerCase();
+
+
+            finishAnswer(
+                isCorrect,
+                currentQuizWord.spelling
+            );
+
+
+            // 入力できなくする
+            input.disabled = true;
+
+            answerButton.disabled = true;
+
+        });
+
+
+        // 画面に追加
+        quizOptions.appendChild(input);
+
+        quizOptions.appendChild(answerButton);
+
+    }
+
+}
+
+
+// =================================
+// 回答が終わったときの処理
+// =================================
+
+function finishAnswer(isCorrect, correctAnswer) {
+
+    // 正解なら1点追加
+    if (isCorrect) {
+
+        score++;
+
+        quizQuestion.textContent =
+            "正解ズモ";
+
+    }
+
+    // 不正解
+    else {
+
+        quizQuestion.textContent =
+            `あれれ～正解は「${correctAnswer}」`;
+
+    }
+
+
+    // 正解数を更新
+    quizScore.textContent =
+        `正解数：${score}`;
+
+
+    // すべての選択肢を押せなくする
+    const allButtons =
+        quizOptions.querySelectorAll("button");
+
+    allButtons.forEach(function (button) {
+
+        button.disabled = true;
+
+    });
+
+}
+
+
+// =================================
+// 次の問題
+// =================================
+
+nextQuizButton.addEventListener("click", function () {
+
+    // 最後の問題だった場合
+    if (currentQuizNumber >= totalQuizCount) {
+
+        // 結果を表示
+        quizQuestion.textContent =
+            `${totalQuizCount}問中 ${score}問 正解　うぉw`;
+
+
+        // 選択肢を消す
+        quizOptions.innerHTML = "";
+
+
+        // 次の問題ボタンを隠す
+        nextQuizButton.style.display = "none";
+
+
+        // 再チャレンジボタンを表示
+        retryQuizButton.style.display = "inline-block";
+
+
+        return;
+    }
+
+
+    // 次の問題へ
+    currentQuizNumber++;
+
+
+    // 新しい問題を作る
+    createQuiz();
+
+});
+
+
+// =================================
+// もう一度挑戦する
+// =================================
+
+retryQuizButton.addEventListener("click", function () {
+
+    // 正解数をリセット
+    score = 0;
+
+    // 1問目に戻す
+    currentQuizNumber = 1;
+
+    // 再チャレンジボタンを隠す
+    retryQuizButton.style.display = "none";
+
+    // 次の問題ボタンを表示
+    nextQuizButton.style.display = "inline-block";
+
+    // 新しい問題を作る
+    createQuiz();
+
+});
+
 // ====================
 // Service Workerを登録
 // ====================
