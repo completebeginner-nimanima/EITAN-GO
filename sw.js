@@ -4,7 +4,7 @@
 
 
 // 保存しておくファイルの名前
-const CACHE_NAME = "eitan-go-v1";
+const CACHE_NAME = "eitan-go-v2";
 
 
 // オフラインでも使えるように
