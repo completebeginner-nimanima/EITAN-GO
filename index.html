@@ -5,7 +5,6 @@
 <!-- ページの言語を日本語にする -->
 
 <head>
-    <!-- ページの設定を書く場所 -->
 
     <meta charset="UTF-8">
     <!-- 日本語などの文字を正しく表示するための設定 -->
@@ -20,66 +19,55 @@
     <!-- style.cssを読み込む -->
 
     <link rel="manifest" href="manifest.json">
-    <!-- manifest.jsonを読み込む -- >
+    <!-- PWAの設定を読み込む -->
 
 </head>
 
 
 <body>
-    <! -- ここから実際に画面に表示する内容 -->
 
 
     <!-- ==================== -->
     <!-- ホーム画面 -->
     <!-- ==================== -->
 
-   <div id="homePage">
+    <div id="homePage">
 
-    <!-- ==================== -->
-    <!-- アプリのタイトル -->
-    <!-- ==================== -->
+        <h1>よぉこそ！</h1>
 
-    <h1>よぉこそ！</h1>
+        <h2>EITAN GO</h2>
 
-    <h2>EITAN GO</h2>
-
-    <p>MY英単語帳</p>
+        <p>MY英単語帳</p>
 
 
-    <!-- ==================== -->
-    <!-- ページ移動ボタン -->
-    <!-- ==================== -->
+        <!-- ページ移動ボタン -->
 
-    <button id="wordPageButton">
-        単語帳ずも
-    </button>
-
-    <button id="quizPageButton">
-        クイズも
-    </button>
-
-
-    <!-- ==================== -->
-    <!-- テーマ設定 -->
-    <!-- ==================== -->
-
-    <div id="themeSettings">
-
-        <h3>画面の明るさ</h3>
-
-        <!-- ライトモードを選ぶ -->
-        <button id="lightModeButton">
-            ライト（まぶしい）
+        <button id="wordPageButton">
+            単語帳ずも
         </button>
 
-        <!-- ダークモードを選ぶ -->
-        <button id="darkModeButton">
-            ダーク（くらい）
+        <button id="quizPageButton">
+            クイズも
         </button>
+
+
+        <!-- テーマ設定 -->
+
+        <div id="themeSettings">
+
+            <h3>画面の明るさ</h3>
+
+            <button id="lightModeButton">
+                ライト（まぶしい）
+            </button>
+
+            <button id="darkModeButton">
+                ダーク（くらい）
+            </button>
+
+        </div>
 
     </div>
-
-</div>
 
 
 
@@ -90,11 +78,12 @@
     <div id="wordPage" style="display: none;">
 
         <!-- ホーム画面に戻るボタン -->
+
         <button id="wordBackButton">
             ← ホームかも
         </button>
 
-        <h1> 単語帳かも</h1>
+        <h1>単語帳かも</h1>
 
 
         <!-- ==================== -->
@@ -106,8 +95,11 @@
             <h2>単語または熟語、言い回しを登録</h2>
 
 
-            <!-- 英単語の入力 -->
-            <label for="word">英単語</label>
+            <!-- 英単語 -->
+
+            <label for="word">
+                英単語
+            </label>
 
             <input
                 type="text"
@@ -116,8 +108,11 @@
             >
 
 
-            <!-- 意味の入力 -->
-            <label for="meaning">意味</label>
+            <!-- 意味 -->
+
+            <label for="meaning">
+                意味
+            </label>
 
             <input
                 type="text"
@@ -126,8 +121,11 @@
             >
 
 
-            <!-- スペルの入力 -->
-            <label for="spelling">スペル</label>
+            <!-- スペル -->
+
+            <label for="spelling">
+                スペル
+            </label>
 
             <input
                 type="text"
@@ -136,12 +134,50 @@
             >
 
 
-            <!-- 単語を登録するボタン -->
+            <!-- 単語登録ボタン -->
+
             <button id="addWordButton">
                 単語を登録
             </button>
 
         </div>
+
+
+
+        <!-- ==================== -->
+        <!-- バックアップ機能 -->
+        <!-- ==================== -->
+
+        <div id="backupSettings">
+
+            <h2>単語帳のバックアップ</h2>
+
+
+            <!-- 単語をファイルとして保存するボタン -->
+
+            <button id="backupButton">
+                バックアップ
+            </button>
+
+
+            <!-- 保存した単語を復元するボタン -->
+
+            <button id="restoreButton">
+                復元ずもも
+            </button>
+
+
+            <!-- 復元するJSONファイルを選ぶ場所 -->
+
+            <input
+                type="file"
+                id="restoreFile"
+                accept=".json"
+                style="display: none;"
+            >
+
+        </div>
+
 
 
         <!-- ==================== -->
@@ -165,11 +201,12 @@
     <div id="quizPage" style="display: none;">
 
         <!-- ホーム画面に戻るボタン -->
+
         <button id="quizBackButton">
             ← ホームかも
         </button>
 
-        <h1> クイズかも</h1>
+        <h1>クイズかも</h1>
 
 
         <!-- ==================== -->
@@ -181,23 +218,31 @@
             <h2>クイズの問題数</h2>
 
 
-            <!-- 問題数を選ぶ -->
             <select id="quizCount">
 
-                <option value="10">10問</option>
+                <option value="10">
+                    10問
+                </option>
 
-                <option value="20">20問</option>
+                <option value="20">
+                    20問
+                </option>
 
-                <option value="30">30問</option>
+                <option value="30">
+                    30問
+                </option>
 
-                <option value="50">50問</option>
+                <option value="50">
+                    50問
+                </option>
 
-                <option value="100">100問</option>
+                <option value="100">
+                    100問
+                </option>
 
             </select>
 
 
-            <!-- クイズ開始ボタン -->
             <button id="startQuizButton">
                 クイズ開始
             </button>
@@ -212,25 +257,21 @@
 
         <div id="quizGame" style="display: none;">
 
-            <!-- 現在何問目か -->
             <p id="quizProgress">
                 第 1 / 10 問
             </p>
 
 
-            <!-- 現在の正解数 -->
             <p id="quizScore">
                 正解数：0
             </p>
 
 
-            <!-- 問題文 -->
             <h2 id="quizQuestion">
                 ここに問題が表示されます
             </h2>
 
 
-            <!-- 選択肢 -->
             <div id="quizOptions">
 
                 <!-- JavaScriptによってここに選択肢が追加される -->
@@ -238,13 +279,11 @@
             </div>
 
 
-            <!-- 次の問題へ進むボタン -->
             <button id="nextQuizButton">
                 次の問題
             </button>
 
 
-            <!-- クイズ終了後に表示するボタン -->
             <button id="retryQuizButton" style="display: none;">
                 もう一度挑戦する
             </button>
@@ -261,6 +300,7 @@
 
     <script src="script.js"></script>
     <!-- script.jsを読み込む -->
+
 
 </body>
 
